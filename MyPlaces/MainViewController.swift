@@ -21,17 +21,12 @@ class MainViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Place", for: indexPath)
-        var content = cell.defaultContentConfiguration()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Place", for: indexPath) as! CustomTableViewCell
         let name = restaurantNames[indexPath.row]
         
-        content.text = name
-        content.image = UIImage(named: name)
-        content.imageProperties.maximumSize = CGSize(width: 80, height: 80)
-        content.imageProperties.cornerRadius = cell.frame.size.height / 2
-        
-        
-        cell.contentConfiguration = content
+        cell.nameLabel.text = name
+        cell.imageViewOfPlace.image = UIImage(named: name)
+        cell.imageViewOfPlace.layer.cornerRadius = cell.imageViewOfPlace.frame.height / 2
         
         return cell
     }
@@ -39,7 +34,7 @@ class MainViewController: UITableViewController {
     // MARK: Table VIew Delegate
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        95
+        85
     }
 }
 
