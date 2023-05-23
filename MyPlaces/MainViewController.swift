@@ -39,8 +39,7 @@ class MainViewController: UITableViewController {
     // MARK: Table VIew Delegate
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        90
-        
+        95
     }
 }
 
