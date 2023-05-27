@@ -8,33 +8,33 @@
 import UIKit
 
 class MainViewController: UITableViewController {
-
-    let restaurantNames = ["Cafe Pushkin", "Bistro de Luxe", "Grand Cafe Brest", "Vasilki Restaurant", "Di Mare Restaurant", "La Crete d'Or", "Dikanka Cafe", "Gastro Cafe Kishmish", "Marbella Restaurant", "Staroe Ruslo Restaurant"]
-
+    
+    let places = Place.getPlaces()
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        restaurantNames.count
+        places.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Place", for: indexPath) as! CustomTableViewCell
-        let name = restaurantNames[indexPath.row]
+        let particularPlace = places[indexPath.row]
         
-        cell.nameLabel.text = name
-        cell.imageViewOfPlace.image = UIImage(named: name)
+        cell.nameLabel.text = particularPlace.name
+        cell.locationLabel.text = particularPlace.location
+        cell.typePlaceLabel.text = particularPlace.type
+        cell.imageViewOfPlace.image = UIImage(named: particularPlace.image)
         cell.imageViewOfPlace.layer.cornerRadius = cell.imageViewOfPlace.frame.height / 2
         
         return cell
     }
     
+    @IBAction func cancelAction(_ segue: UIStoryboardSegue) {}
+    
     // MARK: Table VIew Delegate
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        85
-    }
 }
 
